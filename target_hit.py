@@ -38,42 +38,6 @@ class dice_visual_servoing(object):
 		self.k_yaw = 0.0005
 		self.k_alt = 0.0010
 
-	def go_down(self):
-	    msg = Twist()
-	    self.des_vel_pub.publish(msg)
-
-	def go_straight(self):
-	    msg = Twist()
-	    msg.linear.x = 0.4
-	    self.des_vel_pub.publish(msg)
-
-	def go_backward(self):
-	    msg = Twist()
-	    msg.linear.x = -0.4
-	    self.des_vel_pub.publish(msg)
-
-	def turn(self, direction):
-		msg = Twist()
-		if direction == "left":
-			msg.angular.z = self.YAW_TURN_SPEED
-		elif direction == "right":
-			msg.angular.z = -self.YAW_TURN_SPEED
-	    self.des_vel_pub.publish(msg)
-
-	def move_to_side(self, speed):
-	    msg = Twist()
-	    msg.linear.y = speed
-	    self.des_vel_pub.publish(msg)
-
-    def num_callback(self, msg):
-		'''
-		callback to see how many objects did YOLO detect.
-		if detect anything set the flag to True.
-		'''
-        self.detected_any = False
-        if msg.data > 0:
-            self.detected_any = True
-
     def callback(self, msg):
         target_dice = 'D6'
 
@@ -116,7 +80,7 @@ def main(args):
     rospy.init_node('dice_state', anonymous=True)
     ds = dice_state()
     ds.execute()
-	
+
     try:
         rospy.spin()
     except KeyboardInterrupt:
