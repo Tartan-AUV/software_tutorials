@@ -8,7 +8,6 @@
 
   <!-- Start the a underwater world simulation scenario -->
   <include file="$(find gazebo_ros)/launch/empty_world.launch">
-      <!-- <arg name="world_name" value="worlds/lake.world"/> -->
       <arg name="world_name" value="worlds/robosub_2018.world"/>
       <arg name="paused" value="false"/>
   </include>
@@ -25,16 +24,5 @@
       <arg name="uuv_name" value="rexrov"/>
       <arg name="model_name" value="rexrov"/>
   </include>
-
-
-  <!-- Start the target target_follower node. This node will post angular velocity messages to -->
-  <!-- to the uuv_simulator -->
-  <node pkg="robosub" type="basic_target_follower_node" name="target_follower" ns="target_follower">
-    <param name="target_topic" value="/rexrov/target" type="string" />
-    <param name="velocity_topic" value="/rexrov/cmd_vel"/>
-    <param name="kSpeed" value="0.40" type="double" />
-    <param name="kAlt" value="0.0010" type="double" />
-    <param name="kYaw" value="0.0005" type="double" />
-  </node>
 
 </launch>

@@ -132,7 +132,7 @@ def main(args):
 	# init the ros node.
     rospy.init_node('dice_state', anonymous=True)
 	# init the dice visual servoing object
-	ds = dice_visual_servoing()
+    ds = dice_visual_servoing()
 	# execute our mission.
     ds.execute()
     try:
