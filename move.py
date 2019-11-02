@@ -13,6 +13,10 @@ class circle(object):
 	def spin(self):
 		msg = Twist()
 		msg.linear.x = self.linear_speed_x
+		msg.linear.y = 0.0
+		msg.linear.z = 0.0
+		msg.angular.x = 0.0
+		msg.angular.y = 0.0
 		msg.angular.z = self.angular_speed_x
 		self.pub.publish(msg)
 
